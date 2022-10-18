@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .only-mobile {
+    @apply lg:hidden;
+  }
+  .non-mobile {
+    @apply hidden lg:block;
+  }
+}
