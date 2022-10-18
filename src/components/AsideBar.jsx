@@ -1,7 +1,7 @@
 import React from "react";
 import { FaListAlt } from "react-icons/fa";
 import sidenavs from "../constants/NavLinks";
-function AsideBar() {
+function AsideBar({click,toggled}) {
   return (
     <div className="h-[100%] fixed bg-gray-700 divide-y divide-gray-900">
       <div className="flex justify-between items-center p-4">
@@ -9,7 +9,7 @@ function AsideBar() {
           src="/stethascope.png"
           className="bg-blend-normal rounded-full w-[30px]"
         />
-        <FaListAlt color="gold" size={25} />
+        <FaListAlt color="gold" size={25} onClick={click} />
       </div>
       <div className="flex justify-around items-center p-5">
         <img
@@ -26,7 +26,7 @@ function AsideBar() {
           console.log(item);
           return (
             <div className="hover:bg-gray-900 h-[40px] rounded-lg hover:text-white p-2">
-              <a href="#" key={index} className="flex items-center gap-x-4">
+              <a href={item.to} key={index} className="flex items-center gap-x-4">
                 {item.icon}
                 <span className="text-gray-500 text-semibold">
                   {item.title}
