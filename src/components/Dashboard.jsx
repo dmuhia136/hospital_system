@@ -15,6 +15,7 @@ import {
   FaPeace,
   FaBookDead,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Services from "./Services";
 
 function Dashboard() {
@@ -40,30 +41,37 @@ function Dashboard() {
       </div>
       <div>
         <div>
-          <p className="flex items-center gap-x-4">
+          <p className="flex items-center gap-x-4 text-gray-500 text-xl pt-4">
             <FaRegArrowAltCircleRight /> Admin Dashboard
           </p>
         </div>
         {/* all services */}
         <div className="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 gap-y-5 pl-2 pr-10 pt-10">
-          <Services
-            count={0}
-            job="Doctor"
-            color="text-gray-500"
-            icon={<FaAmbulance className="text-gray-300" size={120} />}
-          />
-          <Services
-            count={0}
-            job="Patient"
-            color="text-red-500"
-            icon={<FaProcedures className="text-gray-300" size={120} />}
-          />
-          <Services
-            count={0}
-            job="Nurse"
-            color="text-blue-500"
-            icon={<FaUserNurse className="text-gray-300" size={120} />}
-          />
+          <Link to="/doctor">
+            <Services
+              count={0}
+              job="Doctor"
+              color="text-gray-500"
+              icon={<FaAmbulance className="text-gray-300" size={120} />}
+            />
+          </Link>
+          <Link to="/patient">
+            <Services
+              count={0}
+              job="Patient"
+              color="text-red-500"
+              icon={<FaProcedures className="text-gray-300" size={120} />}
+            />
+          </Link>
+          <Link to="/nurse">
+            <Services
+              count={0}
+              job="Nurse"
+              color="text-blue-500"
+              icon={<FaUserNurse className="text-gray-300" size={120} />}
+            />
+          </Link>
+
           <Services
             count={10}
             job="Pharmacist"

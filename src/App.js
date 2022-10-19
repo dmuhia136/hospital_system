@@ -14,6 +14,7 @@ import Pharmacist from "./pages/Pharmacist";
 import Laboratorist from "./pages/Laboratorist";
 import Accountant from "./pages/Accountant";
 import Receptionist from "./pages/Receptionist";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -28,7 +29,9 @@ function App() {
         <Route path="/laboratory" element={<Laboratorist />} />
         <Route path="/accountant" element={<Accountant />} />
         <Route path="/reception" element={<Receptionist />} />
-      </Routes></Router>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      </Router>
 
 
     </div>

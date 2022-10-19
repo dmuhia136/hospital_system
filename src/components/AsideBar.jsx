@@ -1,6 +1,7 @@
 import React from "react";
 import { FaListAlt } from "react-icons/fa";
 import sidenavs from "../constants/NavLinks";
+
 function AsideBar({click,toggled}) {
   return (
     <div className="h-[100%] fixed bg-gray-700 divide-y divide-gray-900">
@@ -23,10 +24,9 @@ function AsideBar({click,toggled}) {
       </div>
       <div className="space-y-8 pt-10 p-4">
         {sidenavs.map((item, index) => {
-          console.log(item);
           return (
-            <div className="hover:bg-gray-900 h-[40px] rounded-lg hover:text-white p-2">
-              <a href={item.to} key={index} className="flex items-center gap-x-4">
+            <div  key={index} className="hover:bg-gray-900 h-[40px] rounded-lg hover:text-white p-2">
+              <a href={item.to} className="flex items-center gap-x-4">
                 {item.icon}
                 <span className="text-gray-500 text-semibold">
                   {item.title}

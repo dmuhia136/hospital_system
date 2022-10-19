@@ -9,4 +9,10 @@
   .non-mobile {
     @apply hidden lg:block;
   }
+  .input-button {
+    @apply placeholder:italic placeholder:text-slate-400 border-2 border-gray-300 text-gray-700 p-2 w-[400px] rounded-xl bg-gray-100;
+  }
+  .input-auth {
+    @apply w-[300px] placeholder-current place-content-center justify-center items-center flex border-gray-500 border-2 p-2 rounded-lg;
+  }
 }
