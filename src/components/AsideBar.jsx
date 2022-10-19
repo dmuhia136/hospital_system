@@ -21,7 +21,7 @@ function AsideBar({click,toggled}) {
           <p className="text-white font-bold text-lg ">admin</p>
         </div>
       </div>
-      <div className="space-y-10 pt-10 p-4">
+      <div className="space-y-8 pt-10 p-4">
         {sidenavs.map((item, index) => {
           console.log(item);
           return (

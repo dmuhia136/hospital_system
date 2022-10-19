@@ -106,7 +106,7 @@ function Dashboard() {
           />
           <Services
             job="Death Reports"
-            color="text-yellow-500"
+            color="text-red-500"
             icon={<FaBookDead className="text-gray-300" size={120} />}
           />
         </div>

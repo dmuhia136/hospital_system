@@ -1,13 +1,16 @@
 import React from "react";
-import { FaLaptopMedical } from "react-icons/fa";
-import { FaNetworkWired } from "react-icons/fa";
-import { FaAmbulance } from "react-icons/fa";
-import { FaProcedures } from "react-icons/fa";
-import { FaUserNurse } from "react-icons/fa";
-import { FaHospitalUser } from "react-icons/fa";
-import { FaRegUser } from "react-icons/fa";
-import { FaMoneyBillAlt } from "react-icons/fa";
-import { FaPortrait } from "react-icons/fa";
+import {
+  FaPortrait,
+  FaSignOutAlt,
+  FaMoneyBillAlt,
+  FaRegUser,
+  FaHospitalUser,
+  FaUserNurse,
+  FaProcedures,
+  FaAmbulance,
+  FaNetworkWired,
+  FaLaptopMedical,
+} from "react-icons/fa";
 
 var sidenavs = [
   {
@@ -62,6 +65,12 @@ var sidenavs = [
     to: "/reception",
 
     icon: <FaPortrait className="text-gray-500" size={25} />,
+  },
+  {
+    title: "Logout",
+    to: "/reception",
+
+    icon: <FaSignOutAlt className="text-gray-500" size={25} />,
   },
 ];
 
