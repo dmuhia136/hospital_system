@@ -15,4 +15,7 @@
   .input-auth {
     @apply w-[300px] placeholder-current place-content-center justify-center items-center flex border-gray-500 border-2 p-2 rounded-lg;
   }
+  .login-button{
+    @apply bg-blue-600 p-3 w-[100px] text-lg shadow-lg rounded-lg text-white justify-center place-content-center items-center
+  }
 }

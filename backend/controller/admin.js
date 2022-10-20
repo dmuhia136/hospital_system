@@ -18,7 +18,7 @@ exports.create = async (req, res) => {
                         name: req.body.name,
                         username: req.body.username,
                         password: hash,
-                        email:req.body.email
+                        email: req.body.email
                     });
                     newuser
                         .save()
@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
             .findOne({ email: req.body.email })
             .then((user) => {
                 if (!user) {
-                    res.status(404).json({ error: "No user with that email found" });
+                    res.status(404).json({ status: false, error: "No user with that email found" });
                 } else {
                     bcrypt.compare(req.body.password, user.password, async (error, match) => {
                         if (error) {
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
                                 .status(200)
                                 .json({ status: true, token: middleware.generateToken(user), body: user });
                         } else {
-                            res.status(403).json({ error: "password did not match" });
+                            res.status(403).json({ status: false, error: "password did not match" });
                         }
                     });
                 }

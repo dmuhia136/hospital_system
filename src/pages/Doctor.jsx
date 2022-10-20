@@ -1,41 +1,38 @@
 import React, { useState } from "react";
 import AsideBar from "../components/AsideBar";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { FaPlus } from "react-icons/fa";
 import AddDoctor from "../components/functional/AddDoctor";
-import Tooltip from "@mui/material/Tooltip";
 import { Switch } from "@mui/material";
+import fetchDoctor from "../functions/Fetch";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-function createData(name, role, contact, onduty, gender) {
-  return { name, role, contact, onduty, gender };
-}
-
-const rows = [
-  createData("John Doe", "Dentist", "jonhn@gmail.com", false, "male"),
-  createData("Alice Wonder", "Onchology", "Alice@gmail.com", true, "female"),
-  createData("John Snow", "General Doctor", "snow@gmail.com", true, "male"),
-  createData("Alison Baker", "Surgeon", "alison@gmail.com", false, "female"),
-  createData(
-    "Matthew Macchanhey",
-    "General Doctor",
-    "matthew@gmail.com",
-    true,
-    "male"
-  ),
-];
 function Doctor() {
   const [toggleAdd, setToggleAdd] = useState(false);
-  const handleToggle = (event) => {
+  const [duty, setDuty] = useState(false);
+  const { data, isError, isLoading } = useQuery("doctor", fetchDoctor, {
+    staleTime: 1000,
+  });
+  console.log("====================================");
+  console.log(data);
+  console.log("====================================");
+  const handleDuty = async (id,event) => {
     event.preventDefault();
-    setToggleAdd((prev) => !prev);
-    console.log(toggleAdd);
+    setDuty((prev) => !prev);
+    var setData = {
+      onduty: duty,
+    };
+    var response = await axios.patch(
+      "192.168.0.102:4000/doctor/" + id,
+      setData
+    );
+    console.log(response);
   };
+  if (isError) {
+    return <div>Error occured ...</div>;
+  }
+  if (isLoading) {
+    return <div>Loadinng...</div>;
+  }
   return (
     <div className="flex">
       {/* Aside bar */}
@@ -48,12 +45,7 @@ function Doctor() {
           List of Doctors
         </p>
         <div className="justify-end flex place-content-end pb-5">
-          <button
-            onClick={handleToggle}
-            className="flex items-center gap-x-2 rounded-lg p-3 text-white font-semibold bg-blue-500"
-          >
-            <FaPlus /> Add New
-          </button>
+          <AddDoctor />
         </div>
         <div
           className={
@@ -63,11 +55,11 @@ function Doctor() {
           <AddDoctor />
         </div>
 
-        <div className=" grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 gap-y-5 pl-2 pr-10 pt-10 space-y-5">
-          {rows.map((row, index) => (
+        <div className=" grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 gap-y-5 pl-2 pr-10 space-y-5">
+          {data.data.body.map((row, index) => (
             <div
               className="shadow-md w-[300px] h-[200px] flex hover:shadow-xl p-2"
-              key={row.name}
+              key={index}
             >
               <div className="w-7/12 ">
                 <img
@@ -92,7 +84,11 @@ function Doctor() {
                 >
                   {row.onduty ? "On duty" : "Off duty"}
                 </p>
-                <Switch checked={row.onduty} size="small" />
+                <Switch
+                  checked={row.onduty}
+                  onClick={()=>handleDuty.bind(row._id)}
+                  size="small"
+                />
 
                 <span className="absolute bottom-0 left-2">
                   <span className="text-white bg-red-500 rounded-lg p-1">

@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express()
 require("dotenv").config()
-require("cors")
+const cors=require("cors");
+app.use(cors());
 const mongoConnect = require("./config/config")
-
 const port = process.env.PORT
 app.use(require("./router/ROUTE_MOUNTER"));
 
